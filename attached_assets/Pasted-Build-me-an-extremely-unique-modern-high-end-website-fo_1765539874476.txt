@@ -1,0 +1,89 @@
+Build me an extremely unique, modern, high-end website for my brand Refyno.
+
+Refyno is a UAE-based web design & website repair studio.
+We redesign outdated business websites, fix performance issues, create mobile-first layouts, and build modern UI/UX for UAE clients.
+
+The website must look premium, artistic, and hyper-smooth — something that stands out as a “creative studio with insane attention to detail.”
+
+Overall Vibe:
+
+– Apple-level minimalism
+– Modern agency aesthetic
+– Smooth parallax animations, micro-interactions, scroll-triggered effects
+– Rich typography, luxury spacing
+– Light mode with touches of green (Refyno brand color)
+– No generic templates
+– Motion-focused, immersive, and original
+
+Homepage Requirements:
+
+Hero Section:
+– Animated headline: “Refyno — Websites Rebuilt to Perfection”
+– Subtext: “Fixing, redesigning, and future-proofing UAE business websites.”
+– Floating UI elements, subtle parallax, or interactive mouse movement.
+
+Services Preview:
+Show cards for:
+– Website Repairs & Fixes
+– Modern Redesigns
+– Full Website Builds
+– Mobile-Optimized Layouts
+– SEO Performance Upgrades
+
+Each card should include hover animations + an icon.
+
+Featured Work Section:
+Use placeholders but design it as if for:
+– Premium flower shop website (dark, elegant)
+– Restaurant / menu website (black + serif)
+– Beauty studio website (clean white minimalism)
+– Fitness website (bold, dark)
+
+Should include scroll-trigger fade, image sliding, or grid animation.
+
+Unique Features (VERY IMPORTANT):
+
+Add creative touches to make the site feel custom and never-seen-before:
+– A smooth 3D scrolling section
+– Floating glassmorphism UI pieces
+– Animated “before & after website” slider
+– A “live performance score” widget showing speed optimization
+– Interactive pricing estimator
+– A moving cursor trail or interactive highlight
+– Soft shadows + magnetic buttons
+– Subtle sound effects optional in JS (toggleable)
+
+Pages to Include:
+
+Home (hero, services, showcase, why choose us, CTA)
+
+Services with detailed breakdown for each service
+
+Portfolio with animated grids + hover zoom
+
+About with your mission, values, and UAE focus
+
+Contact with a working contact form
+
+Make sure to add:
+
+– Fully responsive design
+– Smooth page transitions
+– Animated navigation bar
+– Custom cursor
+– Scroll-linked animations (GSAP or your own JS)
+– Performance optimized code
+
+Branding:
+
+– Use a premium look: white, soft black, touches of green (#7CFF87 or similar)
+– Use modern fonts (Inter, Manrope, Poppins, or Satoshi)
+
+Deliver:
+
+– HTML + CSS + JavaScript (no React unless needed)
+– Clean file structure
+– No unnecessary comments
+– Fully working interactive elements
+
+Make it feel like a world-class web design agency website that would impress clients the moment they scroll.
