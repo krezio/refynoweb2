@@ -1,5 +1,4 @@
 import { useEffect, useRef } from "react";
-import { Link } from "wouter";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
@@ -11,21 +10,25 @@ import {
   ArrowRight,
   CheckCircle,
   Star,
+  Zap,
+  MessageCircle,
 } from "lucide-react";
+import { FaWhatsapp, FaInstagram } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
 import { ServiceCard } from "@/components/ServiceCard";
-import { PortfolioCard } from "@/components/PortfolioCard";
 import { BeforeAfterSlider } from "@/components/BeforeAfterSlider";
 import { PerformanceWidget } from "@/components/PerformanceWidget";
 import { GlassmorphismCard } from "@/components/GlassmorphismCard";
+import { ReviewsSection } from "@/components/ReviewsSection";
+import { InstagramEmbed } from "@/components/InstagramEmbed";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const services = [
   {
-    title: "Website Repairs & Fixes",
-    description: "Fast fixes for broken layouts, slow loading, and technical issues plaguing your site.",
-    icon: Wrench,
+    title: "New Website Builds",
+    description: "Complete website development from concept to launch. Get online in 24hrs to 3 days.",
+    icon: Rocket,
   },
   {
     title: "Modern Redesigns",
@@ -33,9 +36,9 @@ const services = [
     icon: Palette,
   },
   {
-    title: "Full Website Builds",
-    description: "Complete website development from concept to launch with cutting-edge technology.",
-    icon: Rocket,
+    title: "Website Repairs & Fixes",
+    description: "Fast fixes for broken layouts, slow loading, and technical issues plaguing your site.",
+    icon: Wrench,
   },
   {
     title: "Mobile-Optimized Layouts",
@@ -49,45 +52,17 @@ const services = [
   },
 ];
 
-const portfolio = [
-  {
-    title: "Bloom & Co",
-    category: "Premium Flower Shop",
-    color: "dark",
-    description: "Dark, elegant e-commerce design with rich visuals and seamless checkout experience.",
-  },
-  {
-    title: "Noir Kitchen",
-    category: "Restaurant & Menu",
-    color: "elegant",
-    description: "Sophisticated black and serif typography creating an upscale dining atmosphere.",
-  },
-  {
-    title: "Glow Studio",
-    category: "Beauty & Spa",
-    color: "minimal",
-    description: "Clean white minimalism that radiates luxury and tranquility.",
-  },
-  {
-    title: "Iron Forge Gym",
-    category: "Fitness & Training",
-    color: "bold",
-    description: "Bold, dark design with high-energy visuals that motivate action.",
-  },
-];
-
 const whyChooseUs = [
   "UAE-focused expertise with local market understanding",
-  "Average 3-5 day turnaround for most projects",
+  "24hrs to 3 days turnaround for most projects",
+  "Response time within minutes on WhatsApp & Instagram",
   "Performance-first approach for fast-loading sites",
-  "Ongoing support and maintenance packages",
   "100% satisfaction guarantee on all projects",
 ];
 
 export default function Home() {
   const heroRef = useRef<HTMLDivElement>(null);
   const servicesRef = useRef<HTMLDivElement>(null);
-  const portfolioRef = useRef<HTMLDivElement>(null);
   const whyUsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -115,25 +90,6 @@ export default function Home() {
             scrollTrigger: {
               trigger: services,
               start: "top 80%",
-            },
-          }
-        );
-      }
-
-      const portfolio = portfolioRef.current;
-      if (portfolio) {
-        gsap.fromTo(
-          portfolio.querySelectorAll(".portfolio-card"),
-          { y: 100, opacity: 0 },
-          {
-            y: 0,
-            opacity: 1,
-            stagger: 0.15,
-            duration: 0.8,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: portfolio,
-              start: "top 75%",
             },
           }
         );
@@ -177,28 +133,23 @@ export default function Home() {
         <GlassmorphismCard className="absolute top-32 right-8 md:right-24 p-4 animate-float hidden md:block" aria-hidden="true">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-lg bg-refyno-green/20 flex items-center justify-center">
-              <TrendingUp className="w-5 h-5 text-refyno-green" />
+              <Zap className="w-5 h-5 text-refyno-green" />
             </div>
             <div>
-              <p className="text-xs text-muted-foreground">Performance</p>
-              <p className="font-semibold text-refyno-dark">+285%</p>
+              <p className="text-xs text-muted-foreground">Delivery</p>
+              <p className="font-semibold text-refyno-dark">24hrs - 3 Days</p>
             </div>
           </div>
         </GlassmorphismCard>
 
         <GlassmorphismCard className="absolute bottom-40 left-8 md:left-24 p-4 animate-float-slow hidden md:block" aria-hidden="true">
           <div className="flex items-center gap-3">
-            <div className="flex -space-x-2">
-              {[1, 2, 3].map((i) => (
-                <div
-                  key={i}
-                  className="w-8 h-8 rounded-full bg-gradient-to-br from-refyno-green to-refyno-green-dark border-2 border-white"
-                />
-              ))}
+            <div className="w-10 h-10 rounded-lg bg-[#25D366]/20 flex items-center justify-center">
+              <MessageCircle className="w-5 h-5 text-[#25D366]" />
             </div>
             <div>
-              <p className="text-xs text-muted-foreground">Happy Clients</p>
-              <p className="font-semibold text-refyno-dark">50+ UAE Businesses</p>
+              <p className="text-xs text-muted-foreground">Response Time</p>
+              <p className="font-semibold text-refyno-dark">Within Minutes</p>
             </div>
           </div>
         </GlassmorphismCard>
@@ -212,7 +163,7 @@ export default function Home() {
           <h1 id="hero-heading" className="hero-animate text-4xl md:text-6xl lg:text-7xl font-bold text-refyno-dark leading-tight mb-6">
             Refyno —{" "}
             <span className="relative">
-              <span className="relative z-10">Websites Rebuilt</span>
+              <span className="relative z-10">Websites Built</span>
               <span className="absolute bottom-2 left-0 w-full h-3 bg-refyno-green/30 -z-0" aria-hidden="true" />
             </span>
             <br />
@@ -220,33 +171,42 @@ export default function Home() {
           </h1>
 
           <p className="hero-animate text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed">
-            Fixing, redesigning, and future-proofing UAE business websites.
-            We transform outdated sites into high-performance digital experiences.
+            Building stunning new websites and transforming outdated ones into high-performance digital experiences.
+            Delivered in 24hrs to 3 days.
           </p>
 
           <div className="hero-animate flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link href="/contact">
+            <a
+              href="https://wa.me/971567219287"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <Button
                 size="lg"
-                className="bg-refyno-dark text-white border-refyno-dark text-base px-8"
-                data-testid="button-hero-start"
+                className="bg-[#25D366] hover:bg-[#20BD5A] text-white text-base px-8 gap-2"
+                data-testid="button-hero-whatsapp"
                 data-magnetic
               >
-                Start Your Project
-                <ArrowRight className="w-4 h-4 ml-2" aria-hidden="true" />
+                <FaWhatsapp className="w-5 h-5" />
+                Message on WhatsApp
               </Button>
-            </Link>
-            <Link href="/portfolio">
+            </a>
+            <a
+              href="https://instagram.com/refyno"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <Button
                 size="lg"
                 variant="outline"
-                className="text-base px-8"
-                data-testid="button-hero-portfolio"
+                className="text-base px-8 gap-2 border-pink-500 text-pink-500 hover:bg-pink-50"
+                data-testid="button-hero-instagram"
                 data-magnetic
               >
-                View Our Work
+                <FaInstagram className="w-5 h-5" />
+                DM on Instagram
               </Button>
-            </Link>
+            </a>
           </div>
         </div>
       </section>
@@ -261,7 +221,7 @@ export default function Home() {
               Services That Transform
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-              From quick fixes to complete overhauls, we handle every aspect of your web presence.
+              From brand new builds to quick fixes, we handle every aspect of your web presence.
             </p>
           </div>
 
@@ -306,40 +266,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section ref={portfolioRef} className="py-20 md:py-32 px-6 bg-gradient-to-b from-gray-50/50 to-white" aria-labelledby="portfolio-heading">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
-            <div>
-              <span className="text-refyno-green text-sm font-semibold uppercase tracking-wider">
-                Our Work
-              </span>
-              <h2 id="portfolio-heading" className="text-3xl md:text-5xl font-bold text-refyno-dark mt-4">
-                Featured Projects
-              </h2>
-            </div>
-            <Link href="/portfolio">
-              <Button variant="outline" data-testid="button-view-all-work" data-magnetic>
-                View All Work
-                <ArrowRight className="w-4 h-4 ml-2" aria-hidden="true" />
-              </Button>
-            </Link>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {portfolio.map((project, index) => (
-              <div key={project.title} className="portfolio-card">
-                <PortfolioCard
-                  title={project.title}
-                  category={project.category}
-                  color={project.color}
-                  description={project.description}
-                  index={index}
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <ReviewsSection />
 
       <section ref={whyUsRef} className="py-20 md:py-32 px-6" aria-labelledby="why-heading">
         <div className="max-w-6xl mx-auto">
@@ -389,38 +316,65 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="py-16 md:py-24 px-6 bg-gradient-to-b from-gray-50/50 to-white">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-12">
+            <span className="text-refyno-green text-sm font-semibold uppercase tracking-wider">
+              Follow Us
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold text-refyno-dark mt-4 mb-4">
+              See Our Latest Work
+            </h2>
+            <p className="text-muted-foreground text-lg">
+              Check out our Instagram for more transformations and behind-the-scenes content.
+            </p>
+          </div>
+          <InstagramEmbed postUrl="https://www.instagram.com/p/DSIrJK2E2hz/" />
+        </div>
+      </section>
+
       <section className="py-20 md:py-32 px-6 bg-refyno-dark" aria-labelledby="cta-heading">
         <div className="max-w-4xl mx-auto text-center">
           <h2 id="cta-heading" className="text-3xl md:text-5xl font-bold text-white mb-6">
             Ready to Transform Your Website?
           </h2>
           <p className="text-white/70 text-lg mb-10 max-w-2xl mx-auto">
-            Let's discuss your project and see how we can help you create a stunning,
-            high-performance website that drives results.
+            Message us on WhatsApp or Instagram and we'll respond within minutes.
+            Get your stunning new website in 24hrs to 3 days.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link href="/contact">
+            <a
+              href="https://wa.me/971567219287"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <Button
                 size="lg"
-                className="bg-refyno-green text-refyno-dark border-refyno-green-dark text-base px-8"
-                data-testid="button-cta-start"
+                className="bg-[#25D366] hover:bg-[#20BD5A] text-white text-base px-8 gap-2"
+                data-testid="button-cta-whatsapp"
                 data-magnetic
               >
-                Get a Free Quote
-                <ArrowRight className="w-4 h-4 ml-2" aria-hidden="true" />
+                <FaWhatsapp className="w-5 h-5" />
+                Message on WhatsApp
+                <ArrowRight className="w-4 h-4 ml-1" aria-hidden="true" />
               </Button>
-            </Link>
-            <Link href="/services">
+            </a>
+            <a
+              href="https://instagram.com/refyno"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <Button
                 size="lg"
                 variant="outline"
-                className="text-base px-8 border-white/30 text-white hover:bg-white/10"
-                data-testid="button-cta-services"
+                className="text-base px-8 border-white/30 text-white hover:bg-white/10 gap-2"
+                data-testid="button-cta-instagram"
                 data-magnetic
               >
-                Explore Services
+                <FaInstagram className="w-5 h-5" />
+                DM on Instagram
               </Button>
-            </Link>
+            </a>
           </div>
         </div>
       </section>

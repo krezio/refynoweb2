@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { gsap } from "gsap";
+import newWebsiteImage from "@assets/image_1765541971043.png";
 
 interface BeforeAfterSliderProps {
   beforeLabel?: string;
@@ -84,16 +85,70 @@ export function BeforeAfterSlider({
   return (
     <div
       ref={containerRef}
-      className="relative w-full aspect-[16/10] rounded-2xl overflow-hidden select-none"
+      className="relative w-full aspect-[16/10] rounded-2xl overflow-hidden select-none shadow-2xl"
       data-testid="slider-before-after"
       role="group"
       aria-label="Before and after comparison slider"
     >
-      <div className="absolute inset-0 bg-gradient-to-br from-gray-200 to-gray-300">
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="text-center">
-            <div className="text-6xl font-bold text-gray-400/50 mb-2">OLD</div>
-            <p className="text-gray-500/50">Outdated Design</p>
+      <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%)" }}>
+        <div className="absolute inset-0 p-4" style={{ fontFamily: "Times New Roman, serif" }}>
+          <div style={{ 
+            background: "linear-gradient(to bottom, #000080 0%, #0000aa 100%)", 
+            padding: "8px 12px", 
+            marginBottom: "8px",
+            display: "flex",
+            alignItems: "center",
+            gap: "8px"
+          }}>
+            <div style={{ display: "flex", gap: "4px" }}>
+              <div style={{ width: "12px", height: "12px", background: "#c0c0c0", border: "1px solid #808080" }} />
+              <div style={{ width: "12px", height: "12px", background: "#c0c0c0", border: "1px solid #808080" }} />
+              <div style={{ width: "12px", height: "12px", background: "#c0c0c0", border: "1px solid #808080" }} />
+            </div>
+            <span style={{ color: "white", fontSize: "12px", fontWeight: "bold" }}>Old Website - Internet Explorer</span>
+          </div>
+          
+          <div style={{ background: "#ffffff", border: "3px inset #c0c0c0", padding: "16px", height: "calc(100% - 50px)", overflow: "hidden" }}>
+            <div style={{ textAlign: "center", marginBottom: "16px", overflow: "hidden" }}>
+              <div className="animate-marquee" style={{ color: "#ff0000", fontSize: "14px", fontWeight: "bold", whiteSpace: "nowrap" }}>
+                *** Welcome to our website! Click here for special offers!!! *** BEST PRICES GUARANTEED!!! ***
+              </div>
+            </div>
+            
+            <table style={{ width: "100%", borderCollapse: "collapse" }}>
+              <tbody>
+                <tr>
+                  <td style={{ width: "30%", verticalAlign: "top", padding: "8px", background: "#ffffcc", border: "2px solid #999" }}>
+                    <p style={{ color: "#0000ff", textDecoration: "underline", fontSize: "11px", margin: "4px 0", cursor: "pointer" }}>Home</p>
+                    <p style={{ color: "#0000ff", textDecoration: "underline", fontSize: "11px", margin: "4px 0", cursor: "pointer" }}>About Us</p>
+                    <p style={{ color: "#0000ff", textDecoration: "underline", fontSize: "11px", margin: "4px 0", cursor: "pointer" }}>Services</p>
+                    <p style={{ color: "#0000ff", textDecoration: "underline", fontSize: "11px", margin: "4px 0", cursor: "pointer" }}>Contact</p>
+                    <div style={{ marginTop: "12px", padding: "8px", background: "#ff00ff", border: "2px dashed #000" }}>
+                      <p style={{ color: "#ffff00", fontSize: "10px", fontWeight: "bold", textAlign: "center" }}>CLICK HERE!!!</p>
+                    </div>
+                  </td>
+                  <td style={{ verticalAlign: "top", padding: "12px" }}>
+                    <h1 style={{ color: "#800000", fontSize: "18px", fontFamily: "Comic Sans MS, cursive", marginBottom: "8px" }}>
+                      Welcome To Our Company!!!
+                    </h1>
+                    <p style={{ fontSize: "11px", color: "#333", lineHeight: "1.4" }}>
+                      We are the best at what we do. Call us today for a FREE quote!!!
+                    </p>
+                    <div style={{ marginTop: "12px", display: "flex", gap: "8px" }}>
+                      <div style={{ width: "60px", height: "60px", background: "#c0c0c0", border: "2px solid #808080", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                        <span style={{ fontSize: "8px", color: "#666" }}>IMAGE</span>
+                      </div>
+                      <div style={{ width: "60px", height: "60px", background: "#c0c0c0", border: "2px solid #808080", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                        <span style={{ fontSize: "8px", color: "#666" }}>IMAGE</span>
+                      </div>
+                    </div>
+                    <p style={{ fontSize: "9px", color: "#666", marginTop: "16px" }}>
+                      Last updated: January 15, 2008 | Visitor counter: 00012847
+                    </p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
@@ -103,16 +158,13 @@ export function BeforeAfterSlider({
         style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }}
         aria-hidden="true"
       >
-        <div className="absolute inset-0 bg-gradient-to-br from-refyno-dark to-refyno-dark/90">
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="text-center">
-              <div className="text-6xl font-bold text-refyno-green mb-2">NEW</div>
-              <p className="text-white/70">Modern & Fast</p>
-            </div>
-          </div>
-          <div className="absolute top-4 right-4 bg-refyno-green/20 backdrop-blur-sm rounded-lg px-3 py-1.5 border border-refyno-green/30">
-            <span className="text-refyno-green text-xs font-medium">Performance: 98/100</span>
-          </div>
+        <img 
+          src={newWebsiteImage} 
+          alt="Modern website design"
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute top-4 right-4 bg-refyno-green/90 backdrop-blur-sm rounded-lg px-3 py-1.5 border border-refyno-green/30">
+          <span className="text-white text-xs font-medium">Modern & Premium</span>
         </div>
       </div>
 

@@ -1,17 +1,17 @@
 import { Link } from "wouter";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { MapPin, MessageCircle } from "lucide-react";
+import { FaWhatsapp, FaInstagram } from "react-icons/fa";
 
 const footerLinks = {
   services: [
     { label: "Website Repairs", href: "/services" },
     { label: "Modern Redesigns", href: "/services" },
-    { label: "Full Builds", href: "/services" },
+    { label: "New Website Builds", href: "/services" },
     { label: "Mobile Optimization", href: "/services" },
     { label: "SEO Performance", href: "/services" },
   ],
   company: [
     { label: "About Us", href: "/about" },
-    { label: "Portfolio", href: "/portfolio" },
     { label: "Contact", href: "/contact" },
   ],
 };
@@ -28,24 +28,28 @@ export function Footer() {
               </span>
             </Link>
             <p className="mt-4 text-white/60 text-sm leading-relaxed max-w-xs">
-              UAE's premier web design studio. We transform outdated websites into stunning, high-performance digital experiences.
+              UAE's premier web design studio. We build new websites and transform outdated ones into stunning, high-performance digital experiences.
             </p>
             <div className="flex items-center gap-3 mt-6">
               <a
-                href="mailto:hello@refyno.com"
+                href="https://wa.me/971567219287"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-refyno-green/20 transition-colors focus:outline-none focus:ring-2 focus:ring-refyno-green"
-                aria-label="Email us"
-                data-testid="link-footer-email"
+                aria-label="Message us on WhatsApp"
+                data-testid="link-footer-whatsapp"
               >
-                <Mail className="w-4 h-4" aria-hidden="true" />
+                <FaWhatsapp className="w-5 h-5" aria-hidden="true" />
               </a>
               <a
-                href="tel:+971000000000"
+                href="https://instagram.com/refyno"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-refyno-green/20 transition-colors focus:outline-none focus:ring-2 focus:ring-refyno-green"
-                aria-label="Call us"
-                data-testid="link-footer-phone"
+                aria-label="Follow us on Instagram"
+                data-testid="link-footer-instagram"
               >
-                <Phone className="w-4 h-4" aria-hidden="true" />
+                <FaInstagram className="w-5 h-5" aria-hidden="true" />
               </a>
               <a
                 href="https://maps.google.com/?q=Dubai,UAE"
@@ -102,28 +106,39 @@ export function Footer() {
 
           <div>
             <h4 className="font-semibold text-sm uppercase tracking-wider text-white/40 mb-4">
-              Contact
+              Get In Touch
             </h4>
-            <address className="not-italic">
-              <ul className="space-y-3 text-sm text-white/70">
-                <li className="flex items-start gap-3">
-                  <MapPin className="w-4 h-4 mt-0.5 text-refyno-green flex-shrink-0" aria-hidden="true" />
-                  <span>Dubai, United Arab Emirates</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <Mail className="w-4 h-4 text-refyno-green flex-shrink-0" aria-hidden="true" />
-                  <a href="mailto:hello@refyno.com" className="hover:text-refyno-green transition-colors">
-                    hello@refyno.com
-                  </a>
-                </li>
-                <li className="flex items-center gap-3">
-                  <Phone className="w-4 h-4 text-refyno-green flex-shrink-0" aria-hidden="true" />
-                  <a href="tel:+971000000000" className="hover:text-refyno-green transition-colors">
-                    +971 XX XXX XXXX
-                  </a>
-                </li>
-              </ul>
-            </address>
+            <div className="space-y-4">
+              <div className="flex items-start gap-3">
+                <MessageCircle className="w-4 h-4 mt-0.5 text-refyno-green flex-shrink-0" aria-hidden="true" />
+                <div>
+                  <p className="text-white/70 text-sm">Response time</p>
+                  <p className="text-white font-medium">Within minutes</p>
+                </div>
+              </div>
+              <a
+                href="https://wa.me/971567219287"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 text-white/70 hover:text-refyno-green transition-colors"
+              >
+                <FaWhatsapp className="w-4 h-4 text-refyno-green flex-shrink-0" aria-hidden="true" />
+                <span className="text-sm">+971 56 721 9287</span>
+              </a>
+              <a
+                href="https://instagram.com/refyno"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 text-white/70 hover:text-refyno-green transition-colors"
+              >
+                <FaInstagram className="w-4 h-4 text-refyno-green flex-shrink-0" aria-hidden="true" />
+                <span className="text-sm">DM us on Instagram</span>
+              </a>
+              <div className="flex items-start gap-3">
+                <MapPin className="w-4 h-4 mt-0.5 text-refyno-green flex-shrink-0" aria-hidden="true" />
+                <span className="text-white/70 text-sm">Dubai, United Arab Emirates</span>
+              </div>
+            </div>
           </div>
         </div>
 

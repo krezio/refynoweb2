@@ -14,6 +14,7 @@ import {
   Clock,
   Shield,
 } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -52,15 +53,15 @@ const services = [
       "Updated content structure",
       "Enhanced call-to-actions",
     ],
-    timeline: "5-10 days",
-    startingAt: "AED 3,000",
+    timeline: "24hrs - 3 days",
+    startingAt: "AED 2,000",
   },
   {
     id: "builds",
-    title: "Full Website Builds",
+    title: "New Website Builds",
     subtitle: "Built From the Ground Up",
     description:
-      "Complete website development from concept to launch. We create custom, high-performance websites tailored to your business needs.",
+      "Complete website development from concept to launch. We create custom, high-performance websites tailored to your business needs. Simpler sites delivered in 24hrs-3 days.",
     icon: Rocket,
     features: [
       "Custom design & development",
@@ -70,8 +71,8 @@ const services = [
       "SEO-optimized structure",
       "Performance optimization",
     ],
-    timeline: "2-4 weeks",
-    startingAt: "AED 8,000",
+    timeline: "24hrs - 3 days",
+    startingAt: "AED 3,000",
   },
   {
     id: "mobile",
@@ -88,7 +89,7 @@ const services = [
       "Gesture navigation support",
       "Cross-device testing",
     ],
-    timeline: "3-7 days",
+    timeline: "24hrs - 3 days",
     startingAt: "AED 1,500",
   },
   {
@@ -106,7 +107,7 @@ const services = [
       "Image & asset optimization",
       "Performance monitoring setup",
     ],
-    timeline: "3-5 days",
+    timeline: "24hrs - 3 days",
     startingAt: "AED 2,000",
   },
 ];
@@ -324,18 +325,23 @@ export default function Services() {
             Not Sure What You Need?
           </h2>
           <p className="text-white/70 text-lg mb-10 max-w-2xl mx-auto">
-            Get a free consultation and we'll recommend the perfect solution for your business.
+            Message us on WhatsApp and we'll respond within minutes with a free consultation.
           </p>
-          <Link href="/contact">
+          <a
+            href="https://wa.me/971567219287"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <Button
               size="lg"
-              className="bg-refyno-green text-refyno-dark border-refyno-green-dark text-base px-8"
+              className="bg-[#25D366] hover:bg-[#20BD5A] text-white text-base px-8 gap-2"
               data-testid="button-free-consultation"
             >
-              Get Free Consultation
-              <ArrowRight className="w-4 h-4 ml-2" aria-hidden="true" />
+              <FaWhatsapp className="w-5 h-5" />
+              Message on WhatsApp
+              <ArrowRight className="w-4 h-4 ml-1" aria-hidden="true" />
             </Button>
-          </Link>
+          </a>
         </div>
       </section>
     </div>

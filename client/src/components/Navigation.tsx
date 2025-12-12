@@ -7,7 +7,6 @@ import { gsap } from "gsap";
 const navLinks = [
   { href: "/", label: "Home" },
   { href: "/services", label: "Services" },
-  { href: "/portfolio", label: "Portfolio" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
 ];
@@ -93,15 +92,19 @@ export function Navigation() {
           </div>
 
           <div className="hidden md:block">
-            <Link href="/contact">
+            <a
+              href="https://wa.me/971567219287"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <Button
                 className="bg-refyno-dark text-white border-refyno-dark"
                 data-testid="button-nav-start-project"
                 data-magnetic
               >
-                Start a Project
+                Message Us
               </Button>
-            </Link>
+            </a>
           </div>
 
           <Button
@@ -147,15 +150,19 @@ export function Navigation() {
                 </button>
               </Link>
             ))}
-            <Link href="/contact">
+            <a
+              href="https://wa.me/971567219287"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <Button
                 className="bg-refyno-dark text-white border-refyno-dark mt-4"
                 onClick={() => setIsOpen(false)}
                 data-testid="button-mobile-start-project"
               >
-                Start a Project
+                Message Us on WhatsApp
               </Button>
-            </Link>
+            </a>
           </div>
         </div>
       )}

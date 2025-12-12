@@ -1,21 +1,10 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useMutation } from "@tanstack/react-query";
-import { z } from "zod";
-import { Mail, MapPin, Phone, Clock, Send, CheckCircle, Loader2 } from "lucide-react";
+import { MapPin, Clock, Send, MessageCircle, ArrowRight } from "lucide-react";
+import { FaWhatsapp, FaInstagram } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
 import {
   Select,
   SelectContent,
@@ -23,103 +12,36 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useToast } from "@/hooks/use-toast";
-import { apiRequest } from "@/lib/queryClient";
+import { InstagramEmbed } from "@/components/InstagramEmbed";
 
 const serviceOptions = [
+  "New Website Build",
+  "Website Redesign",
   "Website Repairs & Fixes",
-  "Modern Redesign",
-  "Full Website Build",
   "Mobile Optimization",
   "SEO Performance",
   "Other",
-] as const;
-
-const budgetOptions = [
-  "Under AED 2,000",
-  "AED 2,000 - 5,000",
-  "AED 5,000 - 10,000",
-  "AED 10,000 - 20,000",
-  "AED 20,000+",
-] as const;
-
-const contactSchema = z.object({
-  name: z.string().min(2, "Name must be at least 2 characters"),
-  email: z.string().email("Please enter a valid email address"),
-  company: z.string().optional(),
-  service: z.string().optional(),
-  budget: z.string().optional(),
-  message: z.string().min(10, "Message must be at least 10 characters"),
-});
-
-type ContactFormData = z.infer<typeof contactSchema>;
-
-const contactInfo = [
-  {
-    icon: Mail,
-    label: "Email",
-    value: "hello@refyno.com",
-    description: "We respond within 24 hours",
-  },
-  {
-    icon: Phone,
-    label: "Phone",
-    value: "+971 XX XXX XXXX",
-    description: "Mon-Fri, 9am-6pm GST",
-  },
-  {
-    icon: MapPin,
-    label: "Location",
-    value: "Dubai, UAE",
-    description: "Serving businesses across the Emirates",
-  },
-  {
-    icon: Clock,
-    label: "Response Time",
-    value: "< 24 Hours",
-    description: "For all inquiries",
-  },
 ];
 
 export default function Contact() {
   const headerRef = useRef<HTMLDivElement>(null);
   const formRef = useRef<HTMLDivElement>(null);
-  const { toast } = useToast();
-
-  const form = useForm<ContactFormData>({
-    resolver: zodResolver(contactSchema),
-    defaultValues: {
-      name: "",
-      email: "",
-      company: "",
-      service: "",
-      budget: "",
-      message: "",
-    },
+  const [formData, setFormData] = useState({
+    name: "",
+    company: "",
+    service: "",
+    message: "",
   });
 
-  const mutation = useMutation({
-    mutationFn: async (data: ContactFormData) => {
-      return apiRequest("POST", "/api/contact", data);
-    },
-    onSuccess: () => {
-      toast({
-        title: "Message sent successfully!",
-        description: "We'll get back to you within 24 hours.",
-      });
-      form.reset();
-    },
-    onError: () => {
-      toast({
-        title: "Something went wrong",
-        description: "Please try again or email us directly at hello@refyno.com",
-        variant: "destructive",
-      });
-    },
-  });
-
-  const onSubmit = (data: ContactFormData) => {
-    mutation.mutate(data);
+  const handleWhatsAppSubmit = () => {
+    let message = `Hi! I'm interested in your web design services.\n\n`;
+    if (formData.name) message += `Name: ${formData.name}\n`;
+    if (formData.company) message += `Company: ${formData.company}\n`;
+    if (formData.service) message += `Service: ${formData.service}\n`;
+    if (formData.message) message += `\nMessage:\n${formData.message}`;
+    
+    const encodedMessage = encodeURIComponent(message);
+    window.open(`https://wa.me/971567219287?text=${encodedMessage}`, "_blank");
   };
 
   useEffect(() => {
@@ -158,9 +80,31 @@ export default function Contact() {
             <span className="text-refyno-green">Amazing Together</span>
           </h1>
           <p className="header-animate text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
-            Ready to transform your website? Share your project details and we'll
-            get back to you within 24 hours.
+            Ready to transform your website? Message us on WhatsApp or Instagram and we'll respond within minutes.
           </p>
+          
+          <div className="header-animate flex flex-col sm:flex-row items-center justify-center gap-4 mt-8">
+            <a
+              href="https://wa.me/971567219287"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button size="lg" className="bg-[#25D366] hover:bg-[#20BD5A] text-white gap-2">
+                <FaWhatsapp className="w-5 h-5" />
+                Message on WhatsApp
+              </Button>
+            </a>
+            <a
+              href="https://instagram.com/refyno"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button size="lg" variant="outline" className="gap-2 border-pink-500 text-pink-500 hover:bg-pink-50">
+                <FaInstagram className="w-5 h-5" />
+                DM on Instagram
+              </Button>
+            </a>
+          </div>
         </div>
       </section>
 
@@ -168,202 +112,163 @@ export default function Contact() {
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16">
             <div className="lg:col-span-2">
-              <h2 className="text-2xl font-bold text-refyno-dark mb-8">Contact Information</h2>
+              <h2 className="text-2xl font-bold text-refyno-dark mb-8">Quick Contact</h2>
               <div className="space-y-6">
-                {contactInfo.map((info) => {
-                  const Icon = info.icon;
-                  return (
-                    <div
-                      key={info.label}
-                      className="flex items-start gap-4"
-                      data-testid={`contact-info-${info.label.toLowerCase()}`}
-                    >
-                      <div className="w-12 h-12 rounded-xl bg-refyno-green/10 flex items-center justify-center flex-shrink-0" aria-hidden="true">
-                        <Icon className="w-5 h-5 text-refyno-green" />
-                      </div>
-                      <div>
-                        <p className="text-sm text-muted-foreground">{info.label}</p>
-                        <p className="text-lg font-semibold text-refyno-dark">{info.value}</p>
-                        <p className="text-sm text-muted-foreground">{info.description}</p>
-                      </div>
-                    </div>
-                  );
-                })}
+                <a
+                  href="https://wa.me/971567219287"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-start gap-4 p-4 rounded-xl bg-[#25D366]/10 hover:bg-[#25D366]/20 transition-colors group"
+                >
+                  <div className="w-12 h-12 rounded-xl bg-[#25D366] flex items-center justify-center flex-shrink-0">
+                    <FaWhatsapp className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <p className="text-sm text-muted-foreground">WhatsApp</p>
+                    <p className="text-lg font-semibold text-refyno-dark">+971 56 721 9287</p>
+                    <p className="text-sm text-refyno-green">Response within minutes</p>
+                  </div>
+                </a>
+
+                <a
+                  href="https://instagram.com/refyno"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-start gap-4 p-4 rounded-xl bg-pink-500/10 hover:bg-pink-500/20 transition-colors group"
+                >
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 via-pink-500 to-orange-400 flex items-center justify-center flex-shrink-0">
+                    <FaInstagram className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <p className="text-sm text-muted-foreground">Instagram</p>
+                    <p className="text-lg font-semibold text-refyno-dark">@refyno</p>
+                    <p className="text-sm text-pink-500">DM us anytime</p>
+                  </div>
+                </a>
+
+                <div className="flex items-start gap-4 p-4 rounded-xl bg-refyno-green/10">
+                  <div className="w-12 h-12 rounded-xl bg-refyno-green/20 flex items-center justify-center flex-shrink-0">
+                    <Clock className="w-5 h-5 text-refyno-green" />
+                  </div>
+                  <div>
+                    <p className="text-sm text-muted-foreground">Delivery Time</p>
+                    <p className="text-lg font-semibold text-refyno-dark">24hrs - 3 Days</p>
+                    <p className="text-sm text-muted-foreground">Depending on project scope</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4 p-4 rounded-xl bg-gray-100">
+                  <div className="w-12 h-12 rounded-xl bg-gray-200 flex items-center justify-center flex-shrink-0">
+                    <MapPin className="w-5 h-5 text-refyno-dark" />
+                  </div>
+                  <div>
+                    <p className="text-sm text-muted-foreground">Location</p>
+                    <p className="text-lg font-semibold text-refyno-dark">Dubai, UAE</p>
+                    <p className="text-sm text-muted-foreground">Serving businesses across the Emirates</p>
+                  </div>
+                </div>
               </div>
 
-              <div className="mt-12 p-6 bg-refyno-dark rounded-2xl">
-                <div className="flex items-center gap-3 mb-4">
-                  <CheckCircle className="w-5 h-5 text-refyno-green" aria-hidden="true" />
-                  <span className="text-white font-medium">Free Consultation</span>
-                </div>
-                <p className="text-white/70 text-sm">
-                  Not sure what you need? Book a free 30-minute consultation call
-                  and we'll help you figure out the best solution for your business.
-                </p>
+              <div className="mt-8">
+                <h3 className="text-lg font-semibold text-refyno-dark mb-4">Our Latest Work</h3>
+                <InstagramEmbed postUrl="https://www.instagram.com/p/DSIrJK2E2hz/" />
               </div>
             </div>
 
             <div ref={formRef} className="lg:col-span-3">
               <div className="bg-white rounded-2xl border border-border/50 p-6 md:p-8">
                 <h2 className="text-2xl font-bold text-refyno-dark mb-2">
-                  Tell Us About Your Project
+                  Quick Project Inquiry
                 </h2>
                 <p className="text-muted-foreground mb-8">
-                  Fill out the form below and we'll be in touch shortly.
+                  Fill out the form and we'll send your inquiry directly to WhatsApp for a faster response.
                 </p>
 
-                <Form {...form}>
-                  <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6" noValidate>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <FormField
-                        control={form.control}
-                        name="name"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Full Name *</FormLabel>
-                            <FormControl>
-                              <Input
-                                placeholder="John Smith"
-                                {...field}
-                                data-testid="input-name"
-                                aria-required="true"
-                              />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                      <FormField
-                        control={form.control}
-                        name="email"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Email Address *</FormLabel>
-                            <FormControl>
-                              <Input
-                                type="email"
-                                placeholder="john@company.com"
-                                {...field}
-                                data-testid="input-email"
-                                aria-required="true"
-                              />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
+                <div className="space-y-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <label className="block text-sm font-medium text-refyno-dark mb-2">
+                        Your Name
+                      </label>
+                      <Input
+                        placeholder="John Smith"
+                        value={formData.name}
+                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       />
                     </div>
-
-                    <FormField
-                      control={form.control}
-                      name="company"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Company Name</FormLabel>
-                          <FormControl>
-                            <Input
-                              placeholder="Your Company"
-                              {...field}
-                              data-testid="input-company"
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <FormField
-                        control={form.control}
-                        name="service"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Service Interested In</FormLabel>
-                            <Select onValueChange={field.onChange} defaultValue={field.value}>
-                              <FormControl>
-                                <SelectTrigger data-testid="select-service">
-                                  <SelectValue placeholder="Select a service" />
-                                </SelectTrigger>
-                              </FormControl>
-                              <SelectContent>
-                                {serviceOptions.map((service) => (
-                                  <SelectItem key={service} value={service}>
-                                    {service}
-                                  </SelectItem>
-                                ))}
-                              </SelectContent>
-                            </Select>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                      <FormField
-                        control={form.control}
-                        name="budget"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Budget Range</FormLabel>
-                            <Select onValueChange={field.onChange} defaultValue={field.value}>
-                              <FormControl>
-                                <SelectTrigger data-testid="select-budget">
-                                  <SelectValue placeholder="Select budget" />
-                                </SelectTrigger>
-                              </FormControl>
-                              <SelectContent>
-                                {budgetOptions.map((budget) => (
-                                  <SelectItem key={budget} value={budget}>
-                                    {budget}
-                                  </SelectItem>
-                                ))}
-                              </SelectContent>
-                            </Select>
-                            <FormMessage />
-                          </FormItem>
-                        )}
+                    <div>
+                      <label className="block text-sm font-medium text-refyno-dark mb-2">
+                        Company Name
+                      </label>
+                      <Input
+                        placeholder="Your Company"
+                        value={formData.company}
+                        onChange={(e) => setFormData({ ...formData, company: e.target.value })}
                       />
                     </div>
+                  </div>
 
-                    <FormField
-                      control={form.control}
-                      name="message"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Project Details *</FormLabel>
-                          <FormControl>
-                            <Textarea
-                              placeholder="Tell us about your project, goals, and any specific requirements..."
-                              className="min-h-[150px] resize-none"
-                              {...field}
-                              data-testid="input-message"
-                              aria-required="true"
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
+                  <div>
+                    <label className="block text-sm font-medium text-refyno-dark mb-2">
+                      What do you need?
+                    </label>
+                    <Select onValueChange={(value) => setFormData({ ...formData, service: value })}>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select a service" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {serviceOptions.map((service) => (
+                          <SelectItem key={service} value={service}>
+                            {service}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-refyno-dark mb-2">
+                      Tell us about your project
+                    </label>
+                    <Textarea
+                      placeholder="Describe what you're looking for..."
+                      className="min-h-[150px] resize-none"
+                      value={formData.message}
+                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     />
+                  </div>
 
-                    <Button
-                      type="submit"
-                      size="lg"
-                      className="w-full bg-refyno-dark text-white border-refyno-dark"
-                      disabled={mutation.isPending}
-                      data-testid="button-submit-contact"
+                  <Button
+                    size="lg"
+                    className="w-full bg-[#25D366] hover:bg-[#20BD5A] text-white gap-2"
+                    onClick={handleWhatsAppSubmit}
+                  >
+                    <FaWhatsapp className="w-5 h-5" />
+                    Send via WhatsApp
+                    <ArrowRight className="w-4 h-4" />
+                  </Button>
+
+                  <p className="text-center text-sm text-muted-foreground">
+                    Or message us directly on{" "}
+                    <a
+                      href="https://wa.me/971567219287"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-refyno-green hover:underline"
                     >
-                      {mutation.isPending ? (
-                        <>
-                          <Loader2 className="w-4 h-4 mr-2 animate-spin" aria-hidden="true" />
-                          Sending...
-                        </>
-                      ) : (
-                        <>
-                          Send Message
-                          <Send className="w-4 h-4 ml-2" aria-hidden="true" />
-                        </>
-                      )}
-                    </Button>
-                  </form>
-                </Form>
+                      WhatsApp
+                    </a>{" "}
+                    or{" "}
+                    <a
+                      href="https://instagram.com/refyno"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-pink-500 hover:underline"
+                    >
+                      Instagram
+                    </a>
+                  </p>
+                </div>
               </div>
             </div>
           </div>

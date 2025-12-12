@@ -1,5 +1,4 @@
 import { useEffect, useRef } from "react";
-import { Link } from "wouter";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
@@ -13,6 +12,7 @@ import {
   Clock,
   Shield,
 } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -43,8 +43,8 @@ const values = [
 const stats = [
   { value: "50+", label: "Projects Delivered" },
   { value: "98%", label: "Client Satisfaction" },
-  { value: "3 Days", label: "Avg. Turnaround" },
-  { value: "24/7", label: "Support Available" },
+  { value: "24hrs-3 Days", label: "Delivery Time" },
+  { value: "Minutes", label: "Response Time" },
 ];
 
 const features = [
@@ -62,9 +62,9 @@ const features = [
   },
   {
     icon: Clock,
-    title: "Fast Turnaround",
+    title: "Lightning Fast Delivery",
     description:
-      "Most projects are completed within 3-5 days. We respect your time and deliver without compromising quality.",
+      "Most projects are delivered within 24 hours to 3 days. We respond to messages within minutes on WhatsApp and Instagram.",
   },
   {
     icon: Shield,
@@ -308,19 +308,23 @@ export default function About() {
             Ready to Work With Us?
           </h2>
           <p className="text-muted-foreground text-lg mb-10 max-w-2xl mx-auto">
-            Let's discuss how we can help transform your website into a powerful
-            business asset.
+            Message us on WhatsApp and we'll respond within minutes to discuss your project.
           </p>
-          <Link href="/contact">
+          <a
+            href="https://wa.me/971567219287"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <Button
               size="lg"
-              className="bg-refyno-dark text-white border-refyno-dark text-base px-8"
+              className="bg-[#25D366] hover:bg-[#20BD5A] text-white text-base px-8 gap-2"
               data-testid="button-work-with-us"
             >
-              Get in Touch
-              <ArrowRight className="w-4 h-4 ml-2" aria-hidden="true" />
+              <FaWhatsapp className="w-5 h-5" />
+              Message on WhatsApp
+              <ArrowRight className="w-4 h-4 ml-1" aria-hidden="true" />
             </Button>
-          </Link>
+          </a>
         </div>
       </section>
     </div>
