@@ -52,7 +52,7 @@ export function Footer() {
                 <FaInstagram className="w-5 h-5" aria-hidden="true" />
               </a>
               <a
-                href="https://maps.google.com/?q=Dubai,UAE"
+                href="https://maps.google.com/?q=Al+Ain,UAE"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-refyno-green/20 transition-colors focus:outline-none focus:ring-2 focus:ring-refyno-green"
@@ -136,7 +136,7 @@ export function Footer() {
               </a>
               <div className="flex items-start gap-3">
                 <MapPin className="w-4 h-4 mt-0.5 text-refyno-green flex-shrink-0" aria-hidden="true" />
-                <span className="text-white/70 text-sm">Dubai, United Arab Emirates</span>
+                <span className="text-white/70 text-sm">Al Ain, United Arab Emirates</span>
               </div>
             </div>
           </div>

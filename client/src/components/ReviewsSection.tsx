@@ -8,7 +8,7 @@ gsap.registerPlugin(ScrollTrigger);
 const reviews = [
   {
     name: "Ahmed Al-Rashid",
-    company: "Luxury Auto Dubai",
+    company: "Luxury Auto Al Ain",
     rating: 5,
     text: "Refyno completely transformed our website in just 2 days. The new design is stunning and our leads have increased by 40%. Highly recommend!",
     avatar: "A",

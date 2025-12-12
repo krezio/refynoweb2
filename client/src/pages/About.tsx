@@ -165,7 +165,7 @@ export default function About() {
             <span className="text-refyno-green">UAE Businesses Trust</span>
           </h1>
           <p className="header-animate text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
-            Based in Dubai, we're a boutique web design studio dedicated to helping
+            Based in Al Ain, we're a boutique web design studio dedicated to helping
             UAE businesses shine online with stunning, high-performance websites.
           </p>
         </div>

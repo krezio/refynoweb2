@@ -163,7 +163,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <p className="text-sm text-muted-foreground">Location</p>
-                    <p className="text-lg font-semibold text-refyno-dark">Dubai, UAE</p>
+                    <p className="text-lg font-semibold text-refyno-dark">Al Ain, UAE</p>
                     <p className="text-sm text-muted-foreground">Serving businesses across the Emirates</p>
                   </div>
                 </div>
